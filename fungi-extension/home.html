@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="menu.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- CHART JS JS (CDN) -->
+    <script src="js/chart-elem.js"></script>
+  </head>
+  <body class="body-bg">
+    <main class="container">
+      <div class="home page">
+        <header class="container" style="padding-left: 0">
+          <div class="img-h2">
+            <img
+              class="img-header"
+              src="././images/img.png"
+              alt=""
+              width="60"
+            />
+            <h2>Hi Lakoo</h2>
+          </div>
+
+          <div class="icon-header">
+            <div class="btnDark">
+              <i class="fal fa-lightbulb-on d-none"></i>
+              <i class="fal fa-moon"></i>
+            </div>
+            <i class="bx bx-exit"></i>
+          </div>
+        </header>
+        <div class="top-10">
+          <div class="top">
+            <h3>Top 10</h3>
+            <a class="trending-heading" href="#">See trendings</a>
+          </div>
+
+          <div class="cards" id="top10card"></div>
+        </div>
+
+        <div class="active-mints">
+          <div class="top">
+            <h3>Minting Soon:</h3>
+            <a id="see-all" href="#">See all</a>
+          </div>
+
+          <div class="cards-products" id="mintingsoon"></div>
+
+          <div class="main-web mb-3">
+          <a href="https://alienfunginft.com/"><p>Main website >></p></a>  
+            <div class="social-media">
+              <ul>
+                <li>
+                  <a href="#"><i class="fab fa-discord"></i> Our discord</a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-twitter"></i> Our twitter</a>
+                </li>
+                <li><a href="#"> Guide</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-website">
+          <a href="#">Main website >></a>
+        </div>
+      </div>
+
+      <div class="Trendings page d-none">
+        <header class="container">
+          <div class="img-h2">
+            <span class="point">
+              <span></span>
+            </span>
+            <h4>Trendings</h4>
+          </div>
+
+          <div class="icon-header">
+            <div class="btnDark">
+              <i class="fal fa-lightbulb-on d-none"></i>
+              <i class="fal fa-moon"></i>
+            </div>
+            <i class="bx bx-exit"></i>
+          </div>
+        </header>
+        <div class="dure">
+          <ul>
+            <li id="1d_trending">24H</li>
+            <li id="1w_trending">1 Week</li>
+            <li id="1m_trending">1 month</li>
+          </ul>
+        </div>
+
+        <div class="cards-products mb-3" id="trending collections"></div>
+      </div>
+
+      <div class="Activemints page d-none">
+        <header class="container">
+          <div class="p-header">
+            <p>
+              <i class="fal fa-exclamation-triangle"></i>Adjust the parameters accordingly
+            </p>
+          </div>
+
+          <div class="icon-header">
+            <div class="btnDark">
+              <i class="fal fa-lightbulb-on d-none"></i>
+              <i class="fal fa-moon"></i>
+            </div>
+            <i class="bx bx-exit"></i>
+          </div>
+        </header>
+        <div class="live">
+          <div class="p-live">
+            <span class="point">
+              <span></span>
+            </span>
+            <h4>Live Mint</h4>
+          </div>
+
+          <a href="#" id="NotifcationMintButton">
+            <i class="fas fa-bell"></i> Notifications
+		  </a>
+        </div>
+
+        <div class="input">
+          <div class="select">
+            <div>
+              <select name="" id="all_platforms">
+                <option value="all">All Platforms</option>
+                <option value="meOnly">Magic Eden</option>
+                <option value="lmnftOnly">LMNFT</option>
+                <option value="cmv2Only">CMv2</option>
+              </select>
+              <span>Platform Type</span>
+            </div>
+
+            <div>
+              <select name="" id="mint_state">
+                <option value="">No Filter</option>
+                <option value="mintingSoon">Minting Soon</option>
+                <option value="priceDesc">Most expensive</option>
+                <option value="priceAsc">Least expensive</option>
+                <option value="createdAtDesc">Newest</option>
+                <option value="createdAtAsc">Oldest</option>
+              </select>
+              <span>Sort by</span>
+            </div>
+          </div>
+
+          <div class="progress-prc">
+            <label for="">Minted</label>
+            <input
+              id="percentage_minted"
+              type="range"
+              value="0"
+              min="0"
+              max="100"
+              
+            />
+            <output id="rangevalue">0</output>
+          </div>
+
+          <div class="input-price">
+            <div>
+              <input id="min_mint_price" type="number" value="0.001" />
+              <span>Min price</span>
+            </div>
+            <div>
+              <input id="max_mint_price" type="number" value="100.00" />
+              <span>Max price</span>
+            </div>
+          </div>
+          <!-- FILTER BUTTON -->
+          <button type="button" id="filter-mint-btn" class="filter-btn">
+            <i class="bx bx-filter-alt"></i> Filter
+          </button>
+        </div>
+
+        <div class="cards-products mb-3" id="activemints"></div>
+      </div>
+
+      <div class="Portfolio page d-none">
+        <header class="container">
+          <div class="p-header"></div>
+
+          <div class="icon-header">
+            <div class="btnDark">
+              <i class="fal fa-lightbulb-on d-none"></i>
+              <i class="fal fa-moon"></i>
+            </div>
+            <i class="bx bx-exit"></i>
+          </div>
+        </header>
+        <div class="search">
+          <div class="input-search">
+            <i class="fal fa-search"></i>
+            <input
+              id="PortfolioSearch"
+              type="text"
+              placeholder="Search for a wallet portfolio"
+            />
+          </div>
+        </div>
+
+		<div style="display: flex;width:100%;height:100%;flex-direction: column;align-items: center;justify-content: center;">
+			<div style="background-image: url(/images/img.png);height: 350px;width: 350px;background-size: contain;background-repeat: no-repeat;"></div>
+			<div ><b>Please type in a valid wallet address</b></div>
+		</div>
+      </div>
+
+      <div class="Discounts01 page d-none">
+        <header class="container">
+          <div class="img-h2">
+            <span class="point">
+              <span></span>
+            </span>
+            <h4>monitoring deals</h4>
+          </div>
+
+          <div class="icon-header">
+            <div class="btnDark">
+              <i class="fal fa-lightbulb-on d-none"></i>
+              <i class="fal fa-moon"></i>
+            </div>
+            <i class="bx bx-exit"></i>
+          </div>
+        </header>
+
+        <div class="search">
+          <div class="input-search">
+            <i class="fal fa-search"></i>
+            <input type="text" id="dealstextinput" placeholder="Search for a collection" />
+            <img
+              class="btn-filter"
+              src="./icons/tune_black_24dp 1.svg"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="Collectibles mb-3">
+          <h3>Collectibles</h3>
+          <div class="cards-Collectibles" id="deals"></div>
+        </div>
+
+        <div class="filter">
+          <div class="filter-box">
+            <select name="" id="off_floor">
+              <option value="none">% Off floor</option>
+              <option value="two_point_five">2.5% Off floor</option>
+              <option value="five">5% Off floor</option>
+              <option value="ten">10% Off floor</option>
+              <option value="fifteen">15% Off floor</option>
+              <option value="twenty">20% Off floor</option>
+              <option value="twenty_five">25% Off floor</option>
+              <option value="thirty">30% Off floor</option>
+              <option value="fourty">40% Off floor</option>
+              <option value="fifty">50% Off floor</option>
+            </select>
+
+            <select name="" id="discount_price_range">
+              <option value="none">Price range</option>
+              <option value="0.01_to_0.10">0.01 to 0.1</option>
+              <option value="0.10_to_0.50">0.10 to 0.50</option>
+              <option value="0.50_to_1.00">0.50 to 1.00</option>
+              <option value="1.00_to_5.00">1.00 to 5.00</option>
+              <option value="5.00_to_25.00">5.00 to 25.00</option>
+              <option value="25.00_to_50.00">25.00 to 50.00</option>
+              <option value="50_and_higher">50.00+</option>
+            </select>
+
+            <select name="" id="discount_1h_volume">
+              <option value="none">24H volume</option>
+              <option value="25_plus">25+</option>
+              <option value="50_plus">50+</option>
+              <option value="100_plus">100+</option>
+              <option value="250_plus">250+</option>
+              <option value="500_plus">500+</option>
+              <option value="1000_plus">1000+</option>
+            </select>
+
+            <select name="" id="discount_volume">
+              <option value="none">Volume</option>
+              <option value="500_plus">500+</option>
+              <option value="1000_plus">1000+</option>
+              <option value="5000_plus">5000+</option>
+              <option value="10000_plus">10000+</option>
+              <option value="25000_plus">25000+</option>
+              <option value="50000_plus">50000+</option>
+            </select>
+
+            <button id="deals_filter">Filter</button>
+
+            <i class="fas fa-times btn-close"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="notifications page d-none" style="overflow: scroll;">
+        <header class="container">
+          <div class="img-h2">
+            <span class="point">
+              <span></span>
+            </span>
+            <h4>Discords Notifications</h4>
+          </div>
+
+          <div class="icon-header">
+            <div class="btnDark">
+              <i class="fal fa-lightbulb-on d-none"></i>
+              <i class="fal fa-moon"></i>
+            </div>
+            <i class="bx bx-exit"></i>
+          </div>
+        </header>
+        <div class="note">
+          <h4>Importat Note!</h4>
+          <p>Use the NFT Collection  from Magic Eden</p>
+        </div>
+
+        <div class="createAmint" id="addAlert">
+          <h3>Floor Alert</h3>
+          <button><span>+</span>Create</button>
+        </div>
+        
+		<div class="cards-products" id="alertsList" style="overflow-y: auto; height: fit-content;">
+			<div style="display: flex;width:100%;height:100%;flex-direction: column;align-items: center;justify-content: center;">
+				<div style="background-image: url(/images/lab\ fungi.png);height: 280px;width: 300px;background-size: contain;"></div>
+				<div ><b>No Alerts are set!</b></div>
+			</div>
+        </div>
+		<div class="filter" id="filterNot">
+			<div class="filter-box box-seeAll">
+			  <div>
+				<span>ID</span>
+				<span>25gdE0</span>
+			  </div>
+  
+			  <div>
+				<span>Label</span>
+				<span>Akram</span>
+			  </div>
+  
+			  <div>
+				<span>Mint type</span>
+				<span>NFT</span>
+			  </div>
+  
+			  <div>
+				<span>min price</span>
+				<span>$ 0.15</span>
+			  </div>
+  
+			  <div>
+				<span>max price</span>
+				<span>$ 0.45</span>
+			  </div>
+  
+			  <div>
+				<span>min supply</span>
+				<span>64</span>
+			  </div>
+  
+			  <div>
+				<span>max supply</span>
+				<span>200</span>
+			  </div>
+			  <i class="fas fa-times btnNot-close"></i>
+			</div>
+		  </div>
+        <div class="filter" id="filterNot">
+          <div class="filter-box box-seeAll">
+            <div>
+              <span>ID</span>
+              <span>25gdE0</span>
+            </div>
+
+            <div>
+              <span>Label</span>
+              <span>Akram</span>
+            </div>
+
+            <div>
+              <span>Mint type</span>
+              <span>NFT</span>
+            </div>
+
+            <div>
+              <span>min price</span>
+              <span>$ 0.15</span>
+            </div>
+
+            <div>
+              <span>max price</span>
+              <span>$ 0.45</span>
+            </div>
+
+            <div>
+              <span>min supply</span>
+              <span>64</span>
+            </div>
+
+            <div>
+              <span>max supply</span>
+              <span>200</span>
+            </div>
+            <i class="fas fa-times btnNot-close"></i>
+          </div>
+        </div>
+      </div>
+	  <div class="filter" style="display: none;" id="alert_parameters">
+		<div class="filter-box" >
+			<div class="input">
+				<div class="select">
+				  <div>
+					<select name="" id="OverUnder">
+					  <option value="over">Over</option>
+					  <option value="under">Under</option>
+					  
+					</select>
+					<span>Type</span>
+				  </div>
+				</div>
+	  
+	  
+				<div class="input-price" style="width: 100%;">
+				  <div>
+					<input id="collect_symbol" value="" placeholder="Collection Symbol"  />
+					<span>Symbol</span>
+				  </div>
+				  
+				  <div>
+					<input id="collection_price" type="number" placeholder="Price" />
+					<span>Price</span>
+				  </div>
+
+				</div>
+				<!-- FILTER BUTTON -->
+				<button type="button" id="filter-alert-btn" class="filter-btn">
+				  <i class="bx bx-plus"></i> Add Alert
+				</button>
+			  </div>
+
+		  <i class="fas fa-times btn-close" id="AlertPopUpClose"></i>
+		</div>
+	  </div>
+	  
+
+      <div class="nft-trend-displayer page d-none">
+        <div class="trend-displayer-box">
+          <!-- NFT BOX POSTER HEADER -->
+		  <div style="margin-bottom:30px;">
+		  	<i class="fas fa-times btn-close" style="float: right;cursor:pointer;" id="info-page-close"></i>
+		  </div>
+          <div class="nft-displayer-poster">
+            <img
+              src="https://bafybeigjqyvd6mrjpqficz3hygcpttmbrlcvkakartrsmqtdfds5nfyjga.ipfs.nftstorage.link/"
+              alt=""
+              class="nft-poster"
+            />
+          </div>
+
+          <!-- NFT BOX CONTENT BODY -->
+          <div class="nft-displayer-content">
+            <div class="nft-content-head">
+              <h2 class="nft-content-label">Y00ts: Mint DojoCat</h2>
+              <div class="nft-content-stats">
+                <span class="daily"
+                  >Daily <br />
+                  9.34%</span
+                >
+                <span class="weekly"
+                  >Weekly <br />
+                  11.84%</span
+                >
+              </div>
+            </div>
+            <div class="nft-statistics-wrapper">
+              <!-- STATS LEFT  -->
+              <ul class="list-style">
+                <li class="item-list">
+                  <span class="stats-label"> Floor: </span>
+                  <span class="stats-value">126.500 </span>
+                </li>
+                <li class="item-list">
+                  <span class="stats-label"> Volume: </span>
+                  <span class="stats-value">230.40 </span>
+                </li>
+                <li class="item-list">
+                  <span class="stats-label"> Copies: </span>
+                  <span class="stats-value">2 </span>
+                </li>
+                <li class="item-list">
+                  <span class="stats-label"> Avg.price: </span>
+                  <span class="stats-value"> --- </span>
+                </li>
+              </ul>
+              <!-- STATS RIGHT -->
+              <ul class="list-style">
+                <li class="item-list">
+                  <span class="stats-label"> Listed: </span>
+                  <span class="stats-value">126 copies </span>
+                </li>
+                <li class="item-list">
+                  <span class="stats-label"> 24H Vol: </span>
+                  <span class="stats-value">109K </span>
+                </li>
+                <li class="item-list">
+                  <span class="stats-label"> Holders: </span>
+                  <span class="stats-value">2 </span>
+                </li>
+                <li class="item-list">
+                  <span class="stats-label"> Market cap: </span>
+                  <span class="stats-value"> $0.45 </span>
+                </li>
+              </ul>
+            </div>
+            <button class="nft-trend-continue-btn" type="button">
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="container menu">
+        <ul>
+          <li>
+            <a class="nav-link home active">
+              <div></div>
+              <img src="./icons/home_FILL0_wght400_GRAD0_opsz48.svg" alt="" />
+              <span title="This is a mouseover text!">Home</span></a
+            >
+          </li>
+
+          <li>
+            <a class="nav-link trending">
+              <div></div>
+              <img
+                src="./icons/trending_up_FILL0_wght400_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <span title="This is a mouseover text!">Trendings</span></a
+            >
+          </li>
+
+          <li>
+            <a class="nav-link active-mints">
+              <div></div>
+              <img
+                src="./icons/flash_on_FILL0_wght400_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <span>Active mints</span></a
+            >
+          </li>
+          <li>
+            <a class="nav-link">
+              <div></div>
+              <img
+                src="./icons/library_books_FILL0_wght400_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <span>Portfolio</span></a
+            >
+          </li>
+          <li>
+            <a class="nav-link">
+              <div></div>
+              <img src="./icons/Ic_local_offer_48px.svg" alt="" />
+              <span>Discounts</span></a
+            >
+          </li>
+
+          <li >
+            <a class="nav-link" id="notifier_item">
+              <div></div>
+              <img
+                src="./icons/notifications_FILL0_wght400_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <span>Notifiers</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </main>
+    <!-- <span class="btn-filter"></span> -->
+
+    <script src="./js/chart-module.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/chart.js"></script>
+  </body>
+</html>

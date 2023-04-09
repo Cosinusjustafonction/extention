@@ -1,0 +1,27 @@
+{
+  "name": "NFT",
+  "version": "1.00",
+  "description": "NFT",
+  "icons": {
+    "16": "icon16.ico",
+    "32": "icon32.ico",
+    "48": "icon48.ico",
+    "128": "icon128.ico"
+  },
+  "action": {
+    "default_title": "NFT",
+    "default_popup": "index.html"
+  },
+  "content_security_policy": {
+	"extension_pages": "connect-src https://* http://* data: blob: filesystem:; style-src 'self' 'unsafe-inline' https://* ;script-src 'self';object-src 'self';"
+  },
+  "host_permissions":["https://*/*"],
+  "permissions":["identity","scripting","notifications","storage","alarms"],
+
+  "background": {
+	
+	"service_worker": "js/notifier.js"
+  },
+  "manifest_version": 3
+  
+}
